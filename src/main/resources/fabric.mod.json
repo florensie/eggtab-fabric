@@ -1,4 +1,3 @@
-// Yes I use comments in json. It works for some reason, don't question it.
 {
   "schemaVersion": 1,
   "id": "eggtab",
@@ -8,7 +7,7 @@
   "description": "Moves all spawn eggs to a separate creative tab.",
   "authors": ["Florens Pauwels"],
   "contact": {
-    "homepage": "https://florens.be",
+    "homepage": "https://www.curseforge.com/minecraft/mc-mods/eggtab",
     "sources": "https://github.com/florensie/eggtab",
     "issues": "https://github.com/florensie/eggtab/issues"
   },
@@ -25,7 +24,6 @@
     "eggtab.mixins.json"
   ],
 
-  // Not gonna bother with versions
   "depends": {
     "fabricloader": "*",
     "fabric": "*",
