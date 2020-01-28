@@ -5,6 +5,7 @@ import net.fabricmc.api.Environment;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
+import net.minecraft.util.ActionResult;
 import net.minecraft.util.Hand;
 import net.minecraft.util.TypedActionResult;
 import net.minecraft.world.World;
@@ -55,8 +56,9 @@ public class DummyEggIcon extends Item {
 			user.setOnFireFor(5);
 			user.getStackInHand(hand).decrement(1);
 		}
-		world.createExplosion(null, user.getX(), user.getY() + 1.7, user.getZ(), 3, Explosion.DestructionType.BREAK);
+		world.createExplosion(null, user.x, user.y + 1.7, user.z, 3, Explosion.DestructionType.BREAK);
 
-		return TypedActionResult.success(user.getStackInHand(hand));
+		//noinspection unchecked,rawtypes
+		return new TypedActionResult(ActionResult.SUCCESS, user.getStackInHand(hand));
 	}
 }

@@ -2,7 +2,7 @@ package be.florens.eggtab;
 
 import be.florens.eggtab.item.DummyEggIcon;
 import net.fabricmc.api.ClientModInitializer;
-import net.fabricmc.fabric.api.client.rendering.v1.ColorProviderRegistry;
+import net.fabricmc.fabric.api.client.render.ColorProviderRegistry;
 
 /**
  * Client only class for setting up {@link net.minecraft.client.color.item.ItemColorProvider}
