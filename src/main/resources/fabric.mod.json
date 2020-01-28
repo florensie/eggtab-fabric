@@ -25,9 +25,10 @@
     "eggtab.mixins.json"
   ],
 
+  // Not gonna bother with versions
   "depends": {
-    "fabricloader": ">=0.7.4", // Minimum version needed for @Mutable with @Accessor
-    "fabric": ">=0.4.26", // Minimum version for rendering API
-    "minecraft": ">=1.15.0"
+    "fabricloader": "*",
+    "fabric": "*",
+    "minecraft": "*"
   }
 }
