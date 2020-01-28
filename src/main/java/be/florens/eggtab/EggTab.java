@@ -50,7 +50,7 @@ public class EggTab implements ModInitializer {
 	 */
 	private static void changeGroupIfEgg(Item item) {
 		if(item instanceof SpawnEggItem) {
-			if(Registry.ITEM.getId(item).compareTo(new Identifier(MOD_ID, "egg_group_icon")) == 0) {
+			if(Registry.ITEM.getId(item).equals(new Identifier(MOD_ID, "egg_group_icon"))) {
 				LOGGER.info("[Egg Tab] Ignored tab icon dummy item");
 			} else {
 				((MixinItem) item).setGroup(ITEM_GROUP);
