@@ -1,0 +1,33 @@
+// Yes I use comments in json. It works for some reason, don't question it.
+{
+  "schemaVersion": 1,
+  "id": "eggtab",
+  "version": "${version}",
+
+  "name": "Egg Tab",
+  "description": "Moves all spawn eggs to a separate creative tab.",
+  "authors": ["Florens Pauwels"],
+  "contact": {
+    "homepage": "https://florens.be",
+    "sources": "https://github.com/florensie/eggtab",
+    "issues": "https://github.com/florensie/eggtab/issues"
+  },
+
+  "license": "MIT",
+  "icon": "assets/eggtab/icon.png",
+
+  "entrypoints": {
+    "main": ["be.florens.eggtab.EggTab"],
+    "client": ["be.florens.eggtab.EggTabClient"]
+  },
+
+  "mixins": [
+    "eggtab.mixins.json"
+  ],
+
+  "depends": {
+    "fabricloader": ">=0.7.4", // Minimum version needed for @Mutable with @Accessor
+    "fabric": ">=0.4.26", // Minimum version for rendering API
+    "minecraft": ">=1.15.0"
+  }
+}
