@@ -11,6 +11,8 @@ import net.fabricmc.fabric.api.client.rendering.v1.ColorProviderRegistry;
 public class EggTabClient implements ClientModInitializer {
 	@Override
 	public void onInitializeClient() {
-		ColorProviderRegistry.ITEM.register((stack, tintIndex) -> DummyEggIcon.ItemColor.getColor(tintIndex), EggTab.GROUP_ICON_ITEM);
+		if(EggTab.CONFIG.eggsGroup) {
+			ColorProviderRegistry.ITEM.register((stack, tintIndex) -> DummyEggIcon.ItemColor.getColor(tintIndex), EggTab.EGG_GROUP_ICON);
+		}
 	}
 }

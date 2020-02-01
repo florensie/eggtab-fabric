@@ -1,4 +1,11 @@
 {
   "itemGroup.eggtab.egg_group": "Spawn Eggs",
-  "item.eggtab.egg_group_icon": "Forbidden Rave Egg"
+  "itemGroup.eggtab.book_group": "Enchanted Books",
+  "item.eggtab.egg_group_icon": "Forbidden Rave Egg",
+  "configTitle.eggtab.title": "Egg Tab configuration",
+
+  "text.autoconfig.eggtab.title": "Egg Tab configuration",
+  "text.autoconfig.eggtab.option.eggsGroup.@PrefixText": "§c§l§oThese changes require a restart to take effect",
+  "text.autoconfig.eggtab.option.eggsGroup": "Spawn eggs in seperate tab",
+  "text.autoconfig.eggtab.option.booksGroup": "Enchanted books in seperate tab"
 }

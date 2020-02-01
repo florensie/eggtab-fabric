@@ -17,7 +17,8 @@
 
   "entrypoints": {
     "main": ["be.florens.eggtab.EggTab"],
-    "client": ["be.florens.eggtab.EggTabClient"]
+    "client": ["be.florens.eggtab.EggTabClient"],
+    "modmenu": ["be.florens.eggtab.config.ModMenuConfig"]
   },
 
   "mixins": [
