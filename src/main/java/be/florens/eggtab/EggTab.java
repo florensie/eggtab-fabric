@@ -28,7 +28,8 @@ public class EggTab implements ModInitializer {
 	public static final Logger LOGGER = LogManager.getLogger(MOD_ID);
 	public static ModConfig CONFIG;
 
-	public static DummyEggIcon EGG_GROUP_ICON;
+	// Icon should always be registered, can't join server without it
+	public static DummyEggIcon EGG_GROUP_ICON = Registry.register(Registry.ITEM, new Identifier(MOD_ID, "egg_group_icon"), new DummyEggIcon());
 	public static ItemGroup EGG_GROUP;
 	public static ItemGroup BOOK_GROUP;
 
@@ -51,7 +52,6 @@ public class EggTab implements ModInitializer {
 
 		// Spawn eggs setup
 		if(CONFIG.eggsGroup) {
-			EGG_GROUP_ICON = Registry.register(Registry.ITEM, new Identifier(MOD_ID, "egg_group_icon"), new DummyEggIcon());
 			EGG_GROUP = FabricItemGroupBuilder.build(
 					new Identifier(MOD_ID, "egg_group"),
 					() -> new ItemStack(EGG_GROUP_ICON)
