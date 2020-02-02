@@ -4,7 +4,7 @@ import be.florens.eggtab.config.ModConfig;
 import be.florens.eggtab.item.DummyEggIcon;
 import be.florens.eggtab.mixin.MixinItem;
 import me.sargunvohra.mcmods.autoconfig1u.AutoConfig;
-import me.sargunvohra.mcmods.autoconfig1u.serializer.JanksonConfigSerializer;
+import me.sargunvohra.mcmods.autoconfig1u.serializer.Toml4jConfigSerializer;
 import net.fabricmc.api.ModInitializer;
 import net.fabricmc.fabric.api.client.itemgroup.FabricItemGroupBuilder;
 import net.fabricmc.fabric.api.event.registry.RegistryEntryAddedCallback;
@@ -35,7 +35,7 @@ public class EggTab implements ModInitializer {
 
 	@Override
 	public void onInitialize() {
-		CONFIG = AutoConfig.register(ModConfig.class, JanksonConfigSerializer::new).getConfig();
+		CONFIG = AutoConfig.register(ModConfig.class, Toml4jConfigSerializer::new).getConfig();
 
 		// Enchanted books setup
 		if(CONFIG.booksGroup) {
