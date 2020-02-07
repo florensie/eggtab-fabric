@@ -26,7 +26,7 @@ import org.apache.logging.log4j.Logger;
 public class EggTab implements ModInitializer {
 	public static final String MOD_ID = "eggtab";
 	public static final Logger LOGGER = LogManager.getLogger(MOD_ID);
-	public static ModConfig CONFIG;
+	public static final ModConfig CONFIG = AutoConfig.register(ModConfig.class, Toml4jConfigSerializer::new).getConfig();
 
 	// Icon should always be registered, can't join server without it
 	public static DummyEggIcon EGG_GROUP_ICON = Registry.register(Registry.ITEM, new Identifier(MOD_ID, "egg_group_icon"), new DummyEggIcon());
@@ -35,8 +35,6 @@ public class EggTab implements ModInitializer {
 
 	@Override
 	public void onInitialize() {
-		CONFIG = AutoConfig.register(ModConfig.class, Toml4jConfigSerializer::new).getConfig();
-
 		// Enchanted books setup
 		if(CONFIG.booksGroup) {
 			LOGGER.info("[Egg Tab] Moving enchanted books");
