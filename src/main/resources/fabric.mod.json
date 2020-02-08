@@ -26,8 +26,11 @@
   ],
 
   "depends": {
-    "fabricloader": "*",
-    "fabric": "*",
-    "minecraft": "*"
+    "fabricloader": "^0.7.8",
+    "fabric": "^0.4.30",
+    "minecraft": ["1.15.x", "1.16.x"]
+  },
+  "suggests": {
+    "modmenu": "*"
   }
 }
