@@ -14,7 +14,7 @@ minecraft {
 }
 
 repositories {
-	maven { url "https://maven.jamieswhiteshirt.com/libs-release" }
+	maven { url = 'https://maven.dblsaiko.net' }
 }
 
 dependencies {
@@ -26,7 +26,7 @@ dependencies {
 	// Fabric API. This is technically optional, but you probably want it anyway.
 	modApi "net.fabricmc.fabric-api:fabric-api:${project.fabric_version}"
 
-	// Jar in jar cloth config
+	// Jar-in-jar cloth config
 	modImplementation ("me.shedaniel.cloth:config-2:${project.cloth_config_version}") {
 		exclude(group: "io.github.prospector", module: "modmenu")
 	}
@@ -39,9 +39,7 @@ dependencies {
 	modImplementation ("io.github.prospector:modmenu:${project.mod_menu_version}") {
 		transitive = false
 	}
-	modImplementation ("com.jamieswhiteshirt:developer-mode:${project.developer_mode_version}") {
-		transitive = false
-	}
+	modRuntime "net.dblsaiko:winwonders:${project.window_wonders_version}-+"
 }
 
 processResources {
