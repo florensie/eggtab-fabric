@@ -1,10 +1,10 @@
 package be.florens.eggtab;
 
 import be.florens.eggtab.config.ModConfig;
-import be.florens.eggtab.item.DummyEggIcon;
-import be.florens.eggtab.mixin.MixinItem;
+import be.florens.eggtab.mixin.ItemAccessor;
 import me.sargunvohra.mcmods.autoconfig1u.AutoConfig;
 import me.sargunvohra.mcmods.autoconfig1u.serializer.Toml4jConfigSerializer;
+import net.fabricmc.api.ClientModInitializer;
 import net.fabricmc.api.ModInitializer;
 import net.fabricmc.fabric.api.client.itemgroup.FabricItemGroupBuilder;
 import net.fabricmc.fabric.api.event.registry.RegistryEntryAddedCallback;
@@ -23,36 +23,22 @@ import org.apache.logging.log4j.Logger;
  * The mod needs to be installed on the server too because it adds an item for the tab icon
  */
 @SuppressWarnings("unused")
-public class EggTab implements ModInitializer {
+public class EggTab implements ClientModInitializer {
 	public static final String MOD_ID = "eggtab";
 	public static final Logger LOGGER = LogManager.getLogger(MOD_ID);
 	public static final ModConfig CONFIG = AutoConfig.register(ModConfig.class, Toml4jConfigSerializer::new).getConfig();
 
 	// Icon should always be registered, can't join server without it
-	public static DummyEggIcon EGG_GROUP_ICON = Registry.register(Registry.ITEM, new Identifier(MOD_ID, "egg_group_icon"), new DummyEggIcon());
 	public static ItemGroup EGG_GROUP;
 	public static ItemGroup BOOK_GROUP;
 
 	@Override
-	public void onInitialize() {
-		// Enchanted books setup
-		if(CONFIG.booksGroup) {
-			LOGGER.info("[Egg Tab] Moving enchanted books");
-			 BOOK_GROUP = FabricItemGroupBuilder.build(
-					new Identifier(MOD_ID, "book_group"),
-					() -> new ItemStack(Items.ENCHANTED_BOOK)
-			).setEnchantments(EnchantmentTarget.values()); // Add all enchantments to new group
-
-			// Remove enchantments from Tools and Combat groups
-			ItemGroup.TOOLS.setEnchantments();
-			ItemGroup.COMBAT.setEnchantments();
-		}
-
-		// Spawn eggs setup
-		if(CONFIG.eggsGroup) {
+	public void onInitializeClient() {
+		// Spawn Eggs group
+		if (CONFIG.eggsGroup) {
 			EGG_GROUP = FabricItemGroupBuilder.build(
-					new Identifier(MOD_ID, "egg_group"),
-					() -> new ItemStack(EGG_GROUP_ICON)
+				new Identifier(MOD_ID, "egg_group"),
+				() -> new ItemStack(Items.CREEPER_SPAWN_EGG)
 			);
 
 			LOGGER.info("[Egg Tab] Starting initial egging");
@@ -67,6 +53,19 @@ public class EggTab implements ModInitializer {
 			// Make sure we get any eggs that get registered in the future
 			RegistryEntryAddedCallback.event(Registry.ITEM).register((rawId, id, item) -> changeGroupIfEgg(item));
 		}
+
+		// Enchanted Books group
+		if (CONFIG.booksGroup) {
+			LOGGER.info("[Egg Tab] Moving enchanted books");
+			BOOK_GROUP = FabricItemGroupBuilder.build(
+					new Identifier(MOD_ID, "book_group"),
+					() -> new ItemStack(Items.ENCHANTED_BOOK)
+			).setEnchantments(EnchantmentTarget.values()); // Add all enchantments to new group
+
+			// Remove enchantments from Tools and Combat groups
+			ItemGroup.TOOLS.setEnchantments();
+			ItemGroup.COMBAT.setEnchantments();
+		}
 	}
 
 	/**
@@ -75,13 +74,9 @@ public class EggTab implements ModInitializer {
 	 * @param item item to check and change group of
 	 */
 	private static void changeGroupIfEgg(Item item) {
-		if(item instanceof SpawnEggItem) {
-			if(Registry.ITEM.getId(item).equals(new Identifier(MOD_ID, "egg_group_icon"))) {
-				LOGGER.info("[Egg Tab] Ignored tab icon dummy item");
-			} else {
-				((MixinItem) item).setGroup(EGG_GROUP);
-				LOGGER.info("[Egg Tab] Egged: " + Registry.ITEM.getId(item).toString());
-			}
+		if (item instanceof SpawnEggItem) {
+			((ItemAccessor) item).setGroup(EGG_GROUP);
+			LOGGER.info("[Egg Tab] Egged: " + Registry.ITEM.getId(item).toString());
 		}
 	}
 }
