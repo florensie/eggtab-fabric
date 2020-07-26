@@ -41,7 +41,7 @@ public class EggTab implements ClientModInitializer {
 				() -> new ItemStack(Items.CREEPER_SPAWN_EGG)
 			);
 
-			LOGGER.info("[Egg Tab] Starting initial egging");
+			LOGGER.info("[Egg Tab] Moving spawn eggs");
 
 			// Do all the spawn eggs that have already been registered first
 			for (SpawnEggItem spawnEggItem : SpawnEggItem.getAll()) {
