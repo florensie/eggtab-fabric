@@ -9,4 +9,4 @@ pluginManagement {
     }
 }
 
-rootProject.name = 'eggtab'
+rootProject.name = 'eggtab-fabric'
