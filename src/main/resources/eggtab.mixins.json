@@ -2,5 +2,5 @@
   "required": true,
   "package": "be.florens.eggtab.mixin",
   "compatibilityLevel": "JAVA_8",
-  "mixins": ["MixinItem"]
+  "client": ["ItemAccessor"]
 }
