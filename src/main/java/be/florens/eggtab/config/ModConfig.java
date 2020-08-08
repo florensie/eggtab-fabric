@@ -9,7 +9,8 @@ import me.sargunvohra.mcmods.autoconfig1u.annotation.ConfigEntry;
 @Config(name = EggTab.MOD_ID)
 @Config.Gui.Background("minecraft:textures/block/bookshelf.png")
 public class ModConfig implements ConfigData {
-	@ConfigEntry.Gui.PrefixText
+	@ConfigEntry.Gui.RequiresRestart
 	public boolean eggsGroup = true;
+	@ConfigEntry.Gui.RequiresRestart
 	public boolean booksGroup = true;
 }

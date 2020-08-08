@@ -3,7 +3,6 @@
   "itemGroup.eggtab.book_group": "Enchanted Books",
 
   "text.autoconfig.eggtab.title": "Egg Tab configuration",
-  "text.autoconfig.eggtab.option.eggsGroup.@PrefixText": "§c§l§oThese changes require a restart to take effect",
   "text.autoconfig.eggtab.option.eggsGroup": "Spawn eggs in seperate tab",
   "text.autoconfig.eggtab.option.booksGroup": "Enchanted books in seperate tab"
 }
