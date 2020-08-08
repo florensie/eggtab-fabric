@@ -3,7 +3,6 @@
   "itemGroup.eggtab.book_group": "附魔书",
 
   "text.autoconfig.eggtab.title": "Egg Tab 配置",
-  "text.autoconfig.eggtab.option.eggsGroup.@PrefixText": "§c§l§o所有更改需要重新启动游戏才能生效",
   "text.autoconfig.eggtab.option.eggsGroup": "刷怪蛋在单独的标签页",
   "text.autoconfig.eggtab.option.booksGroup": "附魔书在单独的标签页"
 }
