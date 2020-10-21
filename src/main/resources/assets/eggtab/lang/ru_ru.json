@@ -1,0 +1,8 @@
+{
+  "itemGroup.eggtab.egg_group": "Яйца спавна",
+  "itemGroup.eggtab.book_group": "Книги зачарования",
+
+  "text.autoconfig.eggtab.title": "Настройки Egg Tab",
+  "text.autoconfig.eggtab.option.eggsGroup": "Яйца спавна в отдельной вкладке",
+  "text.autoconfig.eggtab.option.booksGroup": "Книги зачарования в отдельной вкладке"
+}
