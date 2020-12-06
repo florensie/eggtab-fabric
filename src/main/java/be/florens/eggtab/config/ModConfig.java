@@ -11,6 +11,13 @@ import me.sargunvohra.mcmods.autoconfig1u.annotation.ConfigEntry;
 public class ModConfig implements ConfigData {
 	@ConfigEntry.Gui.RequiresRestart
 	public boolean eggsGroup = true;
+
 	@ConfigEntry.Gui.RequiresRestart
 	public boolean booksGroup = true;
+
+	@ConfigEntry.Gui.RequiresRestart
+	public boolean foodGroup = false;
+
+	@ConfigEntry.Gui.RequiresRestart
+	public boolean removeEmptyGroups = false;
 }

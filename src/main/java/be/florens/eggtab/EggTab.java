@@ -1,7 +1,6 @@
 package be.florens.eggtab;
 
 import be.florens.eggtab.config.ModConfig;
-import be.florens.eggtab.mixin.ItemAccessor;
 import me.sargunvohra.mcmods.autoconfig1u.AutoConfig;
 import me.sargunvohra.mcmods.autoconfig1u.serializer.Toml4jConfigSerializer;
 import net.fabricmc.api.ClientModInitializer;
@@ -13,39 +12,49 @@ import net.minecraft.util.Identifier;
 import net.minecraft.util.registry.Registry;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+import org.jetbrains.annotations.Nullable;
 
 import java.util.Arrays;
+import java.util.List;
 
 /**
- * The mod needs to be installed on the server too because it adds an item for the tab icon
+ * <p>
+ * Item groups are accessible through {@link ItemGroupHandler#getItemGroup()} ({@link EggTab#handlers})<br>
+ * The enchanted books group is available as {@link EggTab#BOOK_GROUP}
+ * </p>
+ *
+ * <p>All item groups can be disabled and can be <code>null</code></p>
  */
-@SuppressWarnings("unused")
 public class EggTab implements ClientModInitializer {
+
 	public static final String MOD_ID = "eggtab";
 	public static final Logger LOGGER = LogManager.getLogger(MOD_ID);
 	public static final ModConfig CONFIG = AutoConfig.register(ModConfig.class, Toml4jConfigSerializer::new).getConfig();
-
-	// Icon should always be registered, can't join server without it
-	public static ItemGroup EGG_GROUP;
-	public static ItemGroup BOOK_GROUP;
+	public static @Nullable ItemGroup BOOK_GROUP;
+	public static final List<ItemGroupHandler> handlers = Arrays.asList(
+			new ItemGroupHandler(() -> FabricItemGroupBuilder.build(
+					new Identifier(MOD_ID, "egg_group"), () -> new ItemStack(Items.CREEPER_SPAWN_EGG)
+			), item -> CONFIG.eggsGroup && item instanceof SpawnEggItem),
+			new ItemGroupHandler(ItemGroup.FOOD, item -> CONFIG.foodGroup && item.isFood())
+	);
 
 	@Override
 	public void onInitializeClient() {
-		// Spawn Eggs group
-		if (CONFIG.eggsGroup) {
-			EGG_GROUP = FabricItemGroupBuilder.build(
-				new Identifier(MOD_ID, "egg_group"),
-				() -> new ItemStack(Items.CREEPER_SPAWN_EGG)
-			);
+		// Iterate all registered items
+		LOGGER.info("[Egg Tab] Moving already registered items");
+		Registry.ITEM.forEach(EggTab::callHandlers);
 
-			// Do all the spawn eggs that have already been registered first
-			LOGGER.info("[Egg Tab] Moving spawn eggs");
-			SpawnEggItem.getAll().forEach(EggTab::changeGroupIfEgg);
+		// Log when finished
+		handlers.forEach(handler -> {
+			String msg = handler.getLogMessage();
+			if (msg != null) {
+				LOGGER.info("[Egg Tab] " + msg);
+			}
+		});
 
-			// Make sure we get any eggs that get registered in the future
-			LOGGER.info("[Egg Tab] Now listening for new eggs");
-			RegistryEntryAddedCallback.event(Registry.ITEM).register((rawId, id, item) -> changeGroupIfEgg(item));
-		}
+		// Register callback for items registered after our init
+		LOGGER.info("[Egg Tab] Now listening for new items");
+		RegistryEntryAddedCallback.event(Registry.ITEM).register((rawId, id, item) -> callHandlers(item));
 
 		// Enchanted Books group
 		if (CONFIG.booksGroup) {
@@ -61,15 +70,7 @@ public class EggTab implements ClientModInitializer {
 		}
 	}
 
-	/**
-	 * Change the group of an {@link Item} if it is a {@link SpawnEggItem}.
-	 *
-	 * @param item item to check and change group of
-	 */
-	private static void changeGroupIfEgg(Item item) {
-		if (item instanceof SpawnEggItem) {
-			((ItemAccessor) item).setGroup(EGG_GROUP);
-			LOGGER.info("[Egg Tab] Egged: " + Registry.ITEM.getId(item).toString());
-		}
+	private static void callHandlers(Item item) {
+		handlers.forEach(handler -> handler.handle(item));
 	}
 }

@@ -1,44 +1,51 @@
 plugins {
-	id 'fabric-loom' version '0.4-SNAPSHOT'
-	id 'maven-publish'
-}
-
-sourceCompatibility = JavaVersion.VERSION_1_8
-targetCompatibility = JavaVersion.VERSION_1_8
-archivesBaseName = project.archives_base_name
-
-version = project.mod_version
-group = project.maven_group
-
-minecraft {
+	id 'fabric-loom' version '0.5-SNAPSHOT'
+	id "com.github.fudge.forgedflowerloom" version "2.0.0"
 }
 
 repositories {
 	maven { url = 'https://maven.dblsaiko.net' }
+	maven {
+		url "https://www.cursemaven.com"
+		content { includeGroup "curse.maven" }
+	}
+	maven { url = "https://jitpack.io" }
+}
+
+sourceCompatibility = JavaVersion.VERSION_1_8
+targetCompatibility = JavaVersion.VERSION_1_8
+
+archivesBaseName = project.archives_base_name
+version = project.mod_version
+group = project.maven_group
+
+sourceSets {
+	testmod {
+		compileClasspath += main.compileClasspath
+		runtimeClasspath += main.runtimeClasspath
+	}
 }
 
 dependencies {
-	//to change the versions see the gradle.properties file
 	minecraft "com.mojang:minecraft:${project.minecraft_version}"
 	mappings "net.fabricmc:yarn:${project.yarn_mappings}:v2"
-	modApi "net.fabricmc:fabric-loader:${project.loader_version}"
+	modImplementation "net.fabricmc:fabric-loader:${project.loader_version}"
 
-	// Fabric API. This is technically optional, but you probably want it anyway.
-	modApi "net.fabricmc.fabric-api:fabric-api:${project.fabric_version}"
+	modImplementation "net.fabricmc.fabric-api:fabric-api:${project.fabric_version}"
 
 	// Jar-in-jar cloth config
-	modImplementation ("me.shedaniel.cloth:config-2:${project.cloth_config_version}") {
-		exclude(group: "io.github.prospector", module: "modmenu")
+	modImplementation include("me.shedaniel.cloth:config-2:${project.cloth_config_version}") {
+		exclude(group: "net.fabricmc.fabric-api")
 	}
-	include "me.shedaniel.cloth:config-2:${project.cloth_config_version}"
-	modImplementation "me.sargunvohra.mcmods:autoconfig1u:${project.auto_config_version}"
-	include "me.sargunvohra.mcmods:autoconfig1u:${project.auto_config_version}"
-
-	// PSA: Some older mods, compiled on Loom 0.2.1, might have outdated Maven POMs.
-	// You may need to force-disable transitiveness on them.
+	modImplementation include("me.sargunvohra.mcmods:autoconfig1u:${project.auto_config_version}") {
+		transitive = false
+	}
 	modImplementation ("io.github.prospector:modmenu:${project.mod_menu_version}") {
 		transitive = false
 	}
+
+	// Dev Runtime
+	testmodImplementation sourceSets.main.output
 	modRuntime "net.dblsaiko:winwonders:${project.window_wonders_version}-+"
 }
 
@@ -73,25 +80,4 @@ task sourcesJar(type: Jar, dependsOn: classes) {
 
 jar {
 	from "LICENSE"
-}
-
-// configure the maven publication
-publishing {
-	publications {
-		mavenJava(MavenPublication) {
-			// add all the jars that should be included when publishing to maven
-			artifact(remapJar) {
-				builtBy remapJar
-			}
-			artifact(sourcesJar) {
-				builtBy remapSourcesJar
-			}
-		}
-	}
-
-	// select the repositories you want to publish to
-	repositories {
-		// uncomment to publish to the local maven
-		// mavenLocal()
-	}
 }

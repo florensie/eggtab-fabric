@@ -1,4 +1,4 @@
-package be.florens.eggtab.mixin;
+package be.florens.eggtab.mixin.mixins;
 
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemGroup;
