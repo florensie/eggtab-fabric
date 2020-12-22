@@ -8,9 +8,9 @@
   "environment": "client",
   "authors": ["Florens Pauwels"],
   "contact": {
-    "homepage": "https://www.curseforge.com/minecraft/mc-mods/eggtab",
-    "sources": "https://github.com/florensie/eggtab",
-    "issues": "https://github.com/florensie/eggtab/issues"
+    "homepage": "https://www.curseforge.com/minecraft/mc-mods/eggtab-fabric",
+    "sources": "https://github.com/florensie/eggtab-fabric",
+    "issues": "https://github.com/florensie/eggtab-fabric/issues"
   },
 
   "license": "MIT",
