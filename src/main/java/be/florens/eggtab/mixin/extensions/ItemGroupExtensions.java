@@ -7,7 +7,6 @@ public interface ItemGroupExtensions {
 	 */
 	void eggtab$hideFromCreativeInventory();
 
-
 	/**
 	 * Decrement {@link net.minecraft.item.ItemGroup#index} by one
 	 */

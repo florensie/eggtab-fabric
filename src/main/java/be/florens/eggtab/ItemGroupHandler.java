@@ -4,7 +4,6 @@ import be.florens.eggtab.mixin.extensions.ItemGroupExtensions;
 import be.florens.eggtab.mixin.mixins.ItemAccessor;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemGroup;
-import net.minecraft.text.TranslatableText;
 import net.minecraft.util.registry.Registry;
 import org.jetbrains.annotations.Nullable;
 

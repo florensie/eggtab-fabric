@@ -8,6 +8,7 @@ import org.spongepowered.asm.mixin.gen.Accessor;
 
 @Mixin(Item.class)
 public interface ItemAccessor {
+
 	@Accessor @Mutable
 	void setGroup(ItemGroup group);
 }
