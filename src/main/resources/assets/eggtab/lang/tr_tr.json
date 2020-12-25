@@ -4,5 +4,7 @@
 
   "text.autoconfig.eggtab.title": "Egg Tab (Yumurta Sekmesi) Ayarları",
   "text.autoconfig.eggtab.option.eggsGroup": "Yumurtaları ayrı sekmede göster",
-  "text.autoconfig.eggtab.option.booksGroup": "Büyü kitaplarını ayrı sekmede göster"
+  "text.autoconfig.eggtab.option.booksGroup": "Büyü kitaplarını ayrı sekmede göster",
+  "text.autoconfig.eggtab.option.foodGroup": "Modla eklenen yemekleri vanilla sekmede göster",
+  "text.autoconfig.eggtab.option.removeEmptyGroups": "Boş sekmeleri gizle"
 }
