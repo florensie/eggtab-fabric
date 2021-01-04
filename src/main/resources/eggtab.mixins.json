@@ -1,11 +1,13 @@
 {
   "required": true,
+  "minVersion": "0.8",
   "package": "be.florens.eggtab.mixin.mixins",
   "compatibilityLevel": "JAVA_8",
   "client": [
     "ItemAccessor",
     "MixinItemGroup"
   ],
-  "mixins": [
-  ]
+  "injectors": {
+    "defaultRequire": 1
+  }
 }
