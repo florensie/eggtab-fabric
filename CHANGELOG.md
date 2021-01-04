@@ -8,8 +8,11 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Added
 - Option to move all (modded) foods to vanilla foods tab
 - Option to hide emtpy/emptied tabs
+- A development test mod
 
 ### Changed
+- Lots of code refactors
+- Updated dependencies
 - Tweaked log output to be way less spammy
 
 ## [1.3.2] - 2020-10-23
