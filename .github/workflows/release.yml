@@ -43,7 +43,7 @@ jobs:
           changelog_type: markdown
           changelog: ${{ steps.changelog_reader.outputs.changes }}
           display_name: ${{ steps.changelog_reader.outputs.version }} for Minecraft 1.16.x-1.17.x
-          game_versions: minecraft-1-16:1.16,1.16.1,1.16.2,1.16.3,1.16.4,1.17,fabric
+          game_versions: 1.16-Snapshot,minecraft-1-16:1.16,1.16.1,1.16.2,1.16.3,1.16.4,1.17,fabric
           release_type: release
           relations: fabric-api:requiredDependency,auto-config-updated-api:embeddedLibrary,cloth-config:embeddedLibrary,modmenu:optionalDependency
       - uses: itsmeow/curseforge-upload@v3
@@ -56,6 +56,6 @@ jobs:
           changelog_type: markdown
           changelog: ${{ steps.changelog_reader.outputs.changes }}
           display_name: ${{ steps.changelog_reader.outputs.version }} (slim) for Minecraft 1.16.x-1.17.x
-          game_versions: minecraft-1-16:1.16,1.16.1,1.16.2,1.16.3,1.16.4,1.17,fabric
+          game_versions: 1.16-Snapshot,minecraft-1-16:1.16,1.16.1,1.16.2,1.16.3,1.16.4,1.17,fabric
           release_type: release
           relations: fabric-api:requiredDependency,auto-config-updated-api:requiredDependency,cloth-config:requiredDependency,modmenu:optionalDependency
