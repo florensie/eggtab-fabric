@@ -1,0 +1,32 @@
+{
+  "schemaVersion": 1,
+  "id": "eggtab",
+  "version": "${version}",
+
+  "name": "Egg Tab",
+  "description": "Moves all spawn eggs and enchanted books to separate creative tabs.",
+  "authors": ["Florens"],
+  "contact": {
+    "homepage": "https://www.curseforge.com/minecraft/mc-mods/eggtab",
+    "sources": "https://github.com/florensie/eggtab",
+    "issues": "https://github.com/florensie/eggtab/issues"
+  },
+
+  "license": "MIT",
+  "icon": "icon.png",
+
+  "environment": "client",
+  "entrypoints": {
+    "client": ["be.florens.eggtab.EggTabFabric"]
+  },
+  "mixins": [
+    "eggtab-common.mixins.json",
+    "eggtab.mixins.json"
+  ],
+
+  "depends": {
+    "minecraft": ">=1.16-0",
+    "fabricloader": "*",
+    "architectury": ">=1.1.55"
+  }
+}

@@ -13,7 +13,7 @@ jobs:
       - name: Build
         uses: eskatos/gradle-command-action@v1
         with:
-          arguments: build remapSlimJar --stacktrace
+          arguments: build --stacktrace
       - uses: actions/upload-artifact@v2
         with:
           name: Artifacts

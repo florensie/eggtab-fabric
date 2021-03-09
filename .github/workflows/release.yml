@@ -16,7 +16,7 @@ jobs:
       - name: Build
         uses: eskatos/gradle-command-action@v1
         with:
-          arguments: build remapSlimJar --stacktrace
+          arguments: build --stacktrace
       - name: Get version from tag
         id: tag_name
         run: echo ::set-output name=version::${GITHUB_REF#refs/tags/v}

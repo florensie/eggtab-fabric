@@ -1,0 +1,13 @@
+{
+  "required": true,
+  "minVersion": "0.8",
+  "package": "be.florens.eggtab.mixin.common",
+  "compatibilityLevel": "JAVA_8",
+  "client": [
+    "ItemAccessor",
+    "CreativeModeTabMixin"
+  ],
+  "injectors": {
+    "defaultRequire": 1
+  }
+}
