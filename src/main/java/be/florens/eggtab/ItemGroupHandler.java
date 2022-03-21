@@ -52,12 +52,12 @@ public class ItemGroupHandler {
 		}
 
 		((ItemGroupExtensions) itemGroup).eggtab$hideFromCreativeInventory();
-		EggTab.LOGGER.info("[Egg Tab] Removed an empty item group: " + itemGroup.getTranslationKey().getString());
+		EggTab.LOGGER.info("[Egg Tab] Removed an empty item group: " + itemGroup.getName());
 	}
 
 	public @Nullable String getLogMessage() {
 		if (itemGroup != null) {
-			return "Moved " + movedCount + " items to " + itemGroup.getTranslationKey().getString();
+			return "Moved " + movedCount + " items to " + itemGroup.getName();
 		}
 		return null;
 	}
