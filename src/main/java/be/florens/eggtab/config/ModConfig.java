@@ -19,6 +19,9 @@ public class ModConfig implements ConfigData {
 	public boolean eggsGroup = true;
 
 	@ConfigEntry.Gui.RequiresRestart
+	public boolean musicGroup = true;
+
+	@ConfigEntry.Gui.RequiresRestart
 	public boolean booksGroup = true;
 
 	@ConfigEntry.Gui.RequiresRestart
