@@ -10,6 +10,12 @@ import me.shedaniel.autoconfig.annotation.ConfigEntry;
 public class ModConfig implements ConfigData {
 
 	@ConfigEntry.Gui.RequiresRestart
+	public boolean arrowsGroup = true;
+
+	@ConfigEntry.Gui.RequiresRestart
+	public boolean potionsGroup = true;
+
+	@ConfigEntry.Gui.RequiresRestart
 	public boolean eggsGroup = true;
 
 	@ConfigEntry.Gui.RequiresRestart

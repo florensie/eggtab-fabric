@@ -33,6 +33,12 @@ public class EggTab implements ClientModInitializer {
 	public static @Nullable ItemGroup BOOK_GROUP;
 	public static final List<ItemGroupHandler> handlers = Arrays.asList(
 			new ItemGroupHandler(() -> FabricItemGroupBuilder.build(
+					new Identifier(MOD_ID, "arrow_group"), () -> new ItemStack(Items.ARROW)
+			), item -> CONFIG.arrowsGroup && item instanceof ArrowItem),
+			new ItemGroupHandler(() -> FabricItemGroupBuilder.build(
+					new Identifier(MOD_ID, "potion_group"), () -> new ItemStack(Items.POTION)
+			), item -> CONFIG.potionsGroup && item instanceof PotionItem),
+			new ItemGroupHandler(() -> FabricItemGroupBuilder.build(
 					new Identifier(MOD_ID, "egg_group"), () -> new ItemStack(Items.CREEPER_SPAWN_EGG)
 			), item -> CONFIG.eggsGroup && item instanceof SpawnEggItem),
 			new ItemGroupHandler(ItemGroup.FOOD, item -> CONFIG.foodGroup && item.isFood())
