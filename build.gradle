@@ -1,33 +1,23 @@
-import net.fabricmc.loom.task.RemapJarTask
-
 plugins {
-	id 'fabric-loom' version '0.5-SNAPSHOT'
-	id "com.github.fudge.forgedflowerloom" version "2.0.0"
+	id 'fabric-loom' version '0.11-SNAPSHOT'
 	id 'maven-publish'
 }
 
 repositories {
-	maven { url = 'https://maven.dblsaiko.net' }
 	maven {
 		url "https://www.cursemaven.com"
 		content { includeGroup "curse.maven" }
 	}
-	maven { url = "https://jitpack.io" }
+	maven { url "https://maven.shedaniel.me/" }
+	maven { url = "https://maven.terraformersmc.com/releases/" }
 }
 
-sourceCompatibility = JavaVersion.VERSION_1_8
-targetCompatibility = JavaVersion.VERSION_1_8
+sourceCompatibility = JavaVersion.VERSION_17
+targetCompatibility = JavaVersion.VERSION_17
 
 archivesBaseName = project.archives_base_name
 version = project.mod_version
 group = project.maven_group
-
-sourceSets {
-	testmod {
-		compileClasspath += main.compileClasspath
-		runtimeClasspath += main.runtimeClasspath
-	}
-}
 
 dependencies {
 	minecraft "com.mojang:minecraft:${project.minecraft_version}"
@@ -37,19 +27,12 @@ dependencies {
 	modImplementation "net.fabricmc.fabric-api:fabric-api:${project.fabric_version}"
 
 	// Jar-in-jar cloth config
-	modImplementation include("me.shedaniel.cloth:config-2:${project.cloth_config_version}") {
+	modImplementation include("me.shedaniel.cloth:cloth-config-fabric:${project.cloth_config_version}") {
 		exclude(group: "net.fabricmc.fabric-api")
 	}
-	modImplementation include("me.sargunvohra.mcmods:autoconfig1u:${project.auto_config_version}") {
+	modImplementation ("com.terraformersmc:modmenu:${project.mod_menu_version}") {
 		transitive = false
 	}
-	modImplementation ("io.github.prospector:modmenu:${project.mod_menu_version}") {
-		transitive = false
-	}
-
-	// Dev Runtime
-	testmodImplementation sourceSets.main.output
-	modRuntime "net.dblsaiko:winwonders:${project.window_wonders_version}-+"
 }
 
 processResources {
@@ -61,19 +44,8 @@ processResources {
 }
 
 tasks.withType(JavaCompile).configureEach {
-	// ensure that the encoding is set to UTF-8, no matter what the system default is
-	// this fixes some edge cases with special characters not displaying correctly
-	// see http://yodaconditions.net/blog/fix-for-java-file-encoding-problems-with-gradle.html
-	// If Javadoc is generated, this must be specified in that task too.
-	it.options.encoding = "UTF-8"
-
-	// The Minecraft launcher currently installs Java 8 for users, so your mod probably wants to target Java 8 too
-	// JDK 9 introduced a new way of specifying this that will make sure no newer classes or methods are used.
-	// We'll use that if it's available, but otherwise we'll use the older option.
-	def targetVersion = 8
-	if (JavaVersion.current().isJava9Compatible()) {
-		it.options.release = targetVersion
-	}
+	// Minecraft 1.18 (1.18-pre2) upwards uses Java 17.
+	it.options.release = 17
 }
 
 java {
@@ -89,31 +61,20 @@ jar {
 	}
 }
 
-task remapSlimJar(type: RemapJarTask, dependsOn: jar) {
-	afterEvaluate {
-		input = file("${project.buildDir}/libs/${archivesBaseName}-${version}-dev.jar")
-		archiveClassifier.set("slim")
-		addNestedDependencies = false
-	}
-}
 
 // configure the maven publication
 publishing {
 	publications {
 		mavenJava(MavenPublication) {
-			// add all the jars that should be included when publishing to maven
-			artifact(remapJar) {
-				builtBy remapJar
-			}
-			artifact(sourcesJar) {
-				builtBy remapSourcesJar
-			}
+			from components.java
 		}
 	}
 
-	// Select the repositories you want to publish to
-	// To publish to maven local, no extra repositories are necessary. Just use the task `publishToMavenLocal`.
+	// See https://docs.gradle.org/current/userguide/publishing_maven.html for information on how to set up publishing.
 	repositories {
-		// See https://docs.gradle.org/current/userguide/publishing_maven.html for information on how to set up publishing.
+		// Add repositories to publish to here.
+		// Notice: This block does NOT have the same function as the block in the top level.
+		// The repositories here will be used for publishing your artifact, not for
+		// retrieving dependencies.
 	}
 }
