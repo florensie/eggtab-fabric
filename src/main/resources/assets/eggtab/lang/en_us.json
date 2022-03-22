@@ -1,8 +1,12 @@
 {
+  "itemGroup.eggtab.arrow_group": "Arrows",
   "itemGroup.eggtab.egg_group": "Spawn Eggs",
+  "itemGroup.eggtab.potion_group": "Potions",
   "itemGroup.eggtab.book_group": "Enchanted Books",
 
   "text.autoconfig.eggtab.title": "Egg Tab configuration",
+  "text.autoconfig.eggtab.option.arrowsGroup": "Arrows in separate tab",
+  "text.autoconfig.eggtab.option.potionsGroup": "Potions in separate tab",
   "text.autoconfig.eggtab.option.eggsGroup": "Spawn eggs in seperate tab",
   "text.autoconfig.eggtab.option.booksGroup": "Enchanted books in seperate tab",
   "text.autoconfig.eggtab.option.foodGroup": "Modded foods in vanilla tab",
