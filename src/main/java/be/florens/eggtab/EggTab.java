@@ -41,6 +41,12 @@ public class EggTab implements ClientModInitializer {
 			new ItemGroupHandler(() -> FabricItemGroupBuilder.build(
 					new Identifier(MOD_ID, "egg_group"), () -> new ItemStack(Items.CREEPER_SPAWN_EGG)
 			), item -> CONFIG.eggsGroup && item instanceof SpawnEggItem),
+			new ItemGroupHandler(() -> FabricItemGroupBuilder.build(
+					new Identifier(MOD_ID, "creative_group"), () -> new ItemStack(Items.COMMAND_BLOCK)
+			), item -> CONFIG.creativeGroup && item.getGroup() == null && item != Items.AIR),
+			new ItemGroupHandler(() -> FabricItemGroupBuilder.build(
+					new Identifier(MOD_ID, "music_group"), () -> new ItemStack(Items.MUSIC_DISC_13)
+			), item -> CONFIG.musicGroup && item instanceof MusicDiscItem),
 			new ItemGroupHandler(ItemGroup.FOOD, item -> CONFIG.foodGroup && item.isFood())
 	);
 

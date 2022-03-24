@@ -46,7 +46,7 @@ public class ItemGroupHandler {
 	private static void hideGroupIfEmpty(ItemGroup itemGroup) {
 		// Return early if the itemGroup is not empty
 		for (Item item : Registry.ITEM) {
-			if (Objects.equals(item.getGroup(), itemGroup)) {
+			if (itemGroup == null || Objects.equals(item.getGroup(), itemGroup)) {
 				return;
 			}
 		}
