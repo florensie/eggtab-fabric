@@ -39,7 +39,7 @@ jobs:
           token: ${{ secrets.CF_API_TOKEN }}
           project_id: 360449
           game_endpoint: minecraft
-          file_path: build/libs/eggtab-${{ steps.changelog_reader.outputs.version }}+1.16-fabric.jar
+          file_path: build/libs/eggtab-${{ steps.changelog_reader.outputs.version }}+1.18-fabric.jar
           changelog_type: markdown
           changelog: ${{ steps.changelog_reader.outputs.changes }}
           display_name: ${{ steps.changelog_reader.outputs.version }} for Minecraft 1.16.5-1.18.x
