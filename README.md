@@ -1,6 +1,7 @@
 # ![](src/main/resources/assets/eggtab/icon.png "Egg Tab logo") Egg Tab
 ![Build](https://github.com/florensie/eggtab-fabric/workflows/Build/badge.svg)
 [![CurseForge](http://cf.way2muchnoise.eu/full_360449_downloads.svg)](https://www.curseforge.com/minecraft/mc-mods/eggtab-fabric)
+[![Discord](https://discordapp.com/api/guilds/298798089068609537/widget.png?style=shield)](https://discord.gg/87pXJadaRr)
 
 Click [here](https://github.com/florensie/eggtab-forge) for the Forge version of this repo.
 

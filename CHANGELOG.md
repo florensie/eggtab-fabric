@@ -4,6 +4,18 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [2.2.0] - 2022-03-24
+### Added
+- New tabs (all configurable)
+  - Music disc tab #13
+  - Creative-only items tab #13
+  - Arrows tab #12
+  - Potions tab #12
+
+### Changed
+- Updated to support newer versions of cloth and mod menu #11
+- Updated russian translations #14
+
 ## [2.1.0] - 2021-01-04
 ### Added
 - CHANGELOG.md containing the full changelog of the mod
@@ -69,6 +81,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Added
 - Spawn eggs tab
 
+[2.2.0]: https://github.com/florensie/eggtab-fabric/compare/2.1.0...v2.2.0
 [2.1.0]: https://github.com/florensie/eggtab-fabric/compare/2.0.0...v2.1.0
 [2.0.0]: https://github.com/florensie/eggtab-fabric/compare/1.3.2...2.0.0
 [1.3.2]: https://github.com/florensie/eggtab-fabric/compare/1.3.1...1.3.2
