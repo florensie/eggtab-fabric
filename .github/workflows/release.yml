@@ -43,6 +43,6 @@ jobs:
           changelog_type: markdown
           changelog: ${{ steps.changelog_reader.outputs.changes }}
           display_name: ${{ steps.changelog_reader.outputs.version }} for Minecraft 1.16.5-1.18.x
-          game_versions: minecraft-1-16:1.16.5,1.17,1.17.1,1.18,1.18.1,1.18.2,fabric
+          game_versions: 8203,8152,8516,8830,8857,9008,fabric
           release_type: release
           relations: fabric-api:requiredDependency,auto-config-updated-api:embeddedLibrary,cloth-config:embeddedLibrary,modmenu:optionalDependency
