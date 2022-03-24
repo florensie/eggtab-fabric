@@ -1,6 +1,8 @@
 {
   "itemGroup.eggtab.arrow_group": "Стрелы",
   "itemGroup.eggtab.egg_group": "Яйца призыва",
+  "itemGroup.eggtab.creative_group": "Творческие",
+  "itemGroup.eggtab.music_group": "Пластинки",
   "itemGroup.eggtab.potion_group": "Зелья",
   "itemGroup.eggtab.book_group": "Чародейские книги",
 
@@ -8,6 +10,8 @@
   "text.autoconfig.eggtab.option.arrowsGroup": "Стрелы в отдельной вкладке",
   "text.autoconfig.eggtab.option.potionsGroup": "Зелья в отдельной вкладке",
   "text.autoconfig.eggtab.option.eggsGroup": "Яйца призыва в отдельной вкладке",
+  "text.autoconfig.eggtab.option.creativeGroup": "Творческие предметы в отдельной вкладке",
+  "text.autoconfig.eggtab.option.musicGroup": "Музыкальные пластинки в отдельной вкладке",
   "text.autoconfig.eggtab.option.booksGroup": "Чародейские книги в отдельной вкладке",
   "text.autoconfig.eggtab.option.foodGroup": "Еда из модов в ванильной вкладке",
   "text.autoconfig.eggtab.option.removeEmptyGroups": "Удалить пустые вкладки после перемещения"
