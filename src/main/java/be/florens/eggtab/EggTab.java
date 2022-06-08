@@ -1,6 +1,7 @@
 package be.florens.eggtab;
 
 import be.florens.eggtab.config.ModConfig;
+import be.florens.eggtab.handlers.CreativeGroupHandler;
 import me.shedaniel.autoconfig.AutoConfig;
 import me.shedaniel.autoconfig.serializer.Toml4jConfigSerializer;
 import net.fabricmc.api.ClientModInitializer;
@@ -23,7 +24,7 @@ import java.util.List;
  * The enchanted books group is available as {@link EggTab#BOOK_GROUP}
  * </p>
  *
- * <p>All item groups can be disabled and can be <code>null</code></p>
+ * <p>All item groups can be disabled and can be {@code null}</p>
  */
 public class EggTab implements ClientModInitializer {
 
@@ -42,12 +43,10 @@ public class EggTab implements ClientModInitializer {
 					new Identifier(MOD_ID, "egg_group"), () -> new ItemStack(Items.CREEPER_SPAWN_EGG)
 			), item -> CONFIG.eggsGroup && item instanceof SpawnEggItem),
 			new ItemGroupHandler(() -> FabricItemGroupBuilder.build(
-					new Identifier(MOD_ID, "creative_group"), () -> new ItemStack(Items.COMMAND_BLOCK)
-			), item -> CONFIG.creativeGroup && item.getGroup() == null && item != Items.AIR),
-			new ItemGroupHandler(() -> FabricItemGroupBuilder.build(
 					new Identifier(MOD_ID, "music_group"), () -> new ItemStack(Items.MUSIC_DISC_13)
 			), item -> CONFIG.musicGroup && item instanceof MusicDiscItem),
-			new ItemGroupHandler(ItemGroup.FOOD, item -> CONFIG.foodGroup && item.isFood())
+			new ItemGroupHandler(ItemGroup.FOOD, item -> CONFIG.foodGroup && item.isFood()),
+			new CreativeGroupHandler()
 	);
 
 	@Override
@@ -58,10 +57,7 @@ public class EggTab implements ClientModInitializer {
 
 		// Log when finished
 		handlers.forEach(handler -> {
-			String msg = handler.getLogMessage();
-			if (msg != null) {
-				LOGGER.info("[Egg Tab] " + msg);
-			}
+			handler.getLogMessage().ifPresent(m -> LOGGER.info("[Egg Tab] {}", m));
 		});
 
 		// Register callback for items registered after our init
@@ -73,8 +69,10 @@ public class EggTab implements ClientModInitializer {
 			LOGGER.info("[Egg Tab] Moving enchanted books");
 
 			// Remove enchantments from all groups
+			// FIXME: new itemgroups with enchantments could be added after this
 			Arrays.stream(ItemGroup.GROUPS).forEach(ItemGroup::setEnchantments);
 
+			// FIXME: new EnchantmentTargets could be added after this
 			BOOK_GROUP = FabricItemGroupBuilder.build(
 					new Identifier(MOD_ID, "book_group"),
 					() -> new ItemStack(Items.ENCHANTED_BOOK)

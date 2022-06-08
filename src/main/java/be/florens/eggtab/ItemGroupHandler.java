@@ -8,6 +8,7 @@ import net.minecraft.util.registry.Registry;
 import org.jetbrains.annotations.Nullable;
 
 import java.util.Objects;
+import java.util.Optional;
 import java.util.function.Predicate;
 import java.util.function.Supplier;
 
@@ -52,20 +53,21 @@ public class ItemGroupHandler {
 		}
 
 		((ItemGroupExtensions) itemGroup).eggtab$hideFromCreativeInventory();
-		EggTab.LOGGER.info("[Egg Tab] Removed an empty item group: " + itemGroup.getName());
+		EggTab.LOGGER.info("[Egg Tab] Removed an empty item group: {}", itemGroup.getName());
 	}
 
-	public @Nullable String getLogMessage() {
-		if (itemGroup != null) {
-			return "Moved " + movedCount + " items to " + itemGroup.getName();
+	Optional<String> getLogMessage() {
+		if (itemGroup == null || movedCount == 0) {
+			return Optional.empty();
 		}
-		return null;
+
+		return Optional.of("Moved " + movedCount + " items to " + itemGroup.getName());
 	}
 
 	/**
 	 * Get the item group for the handler, null if it hasn't been created yet.
 	 *
-	 * @return the {@link ItemGroup} for this handler or <code>null</code>
+	 * @return the {@link ItemGroup} for this handler or {@code null}
 	 */
 	public @Nullable ItemGroup getItemGroup() {
 		return this.itemGroup;
@@ -77,7 +79,7 @@ public class ItemGroupHandler {
 	 *
 	 * @return the {@link ItemGroup} for this handler
 	 */
-	public ItemGroup getOrCreateItemGroup() {
+	private ItemGroup getOrCreateItemGroup() {
 		if (this.itemGroup == null) {
 			this.itemGroup = this.itemGroupSupplier.get();
 		}

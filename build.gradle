@@ -4,11 +4,7 @@ plugins {
 }
 
 repositories {
-	maven {
-		url "https://www.cursemaven.com"
-		content { includeGroup "curse.maven" }
-	}
-	maven { url "https://maven.shedaniel.me/" }
+	maven { url = "https://maven.shedaniel.me/" }
 	maven { url = "https://maven.terraformersmc.com/releases/" }
 }
 
