@@ -1,0 +1,18 @@
+{
+  "itemGroup.eggtab.arrow_group": "Flechas",
+  "itemGroup.eggtab.potion_group": "Pociones",
+  "itemGroup.eggtab.egg_group": "Huevos para generar",
+  "itemGroup.eggtab.creative_group": "Creativo",
+  "itemGroup.eggtab.music_group": "Discos de Música",
+  "itemGroup.eggtab.book_group": "Libros encantados",
+
+  "text.autoconfig.eggtab.title": "Configuración de Egg Tab",
+  "text.autoconfig.eggtab.option.arrowsGroup": "Flechas en una pestaña separada",
+  "text.autoconfig.eggtab.option.potionsGroup": "Pociones en una pestaña separada",
+  "text.autoconfig.eggtab.option.eggsGroup": "Huevos para generar en una pestaña separada",
+  "text.autoconfig.eggtab.option.creativeGroup": "Objetos creativos en una pestaña separada",
+  "text.autoconfig.eggtab.option.musicGroup": "Discos de Música en una pestaña separada",
+  "text.autoconfig.eggtab.option.booksGroup": "Libros encantados en una pestaña separada",
+  "text.autoconfig.eggtab.option.foodGroup": "Comida de mods en una pestaña separada",
+  "text.autoconfig.eggtab.option.removeEmptyGroups": "Eliminar las pestañas vacías después de moverlas"
+}
